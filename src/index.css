@@ -1,13 +1,112 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+span {
+  font-weight: bold;
 }
+
+.container {
+  padding: 30px;
+}
+
+.c-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.c-navigation button {
+  background-color: #d9f614;
+  border: 2px solid black;
+  border-radius: 50%;
+  height: 40px;
+  cursor: pointer;
+}
+
+.c-navigation button a {
+  color: brown;
+  margin: 8px;
+  padding: 8px;
+  font-size: 20px;
+}
+
+.c-navigation button a:focus {
+  color: red;
+}
+
+.c-select__body {
+  display: -ms-grid;
+  display: grid;
+  min-height: 48px;
+  width: 480px;
+  padding: 0 8px;
+  border: 1px solid #d6d8da;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.c-select:focus-within {
+  border: 1px solid #0052cc;
+}
+
+.c-select__menu {
+  min-height: 40px;
+  max-height: 200px;
+  width: 480px;
+  border-radius: 3px;
+  border: 1px solid blue;
+  overflow-y: scroll;
+}
+
+.c-select__menu p {
+  margin: 0px;
+  padding: 6px;
+}
+
+.c-select__menu p:hover {
+  background-color: #eee9e9;
+}
+
+.c-select__tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.c-select__tags div {
+  background-color: #cd9b9b;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 4px;
+}
+
+.c-select__tags span {
+  padding: 1px 1px 1px 4px;
+}
+
+input {
+  border: none;
+  height: 30px;
+  font-size: 14px;
+  padding: 4px 0 0 0;
+}
+
+input:focus {
+  outline: transparent;
+}
+
+.u-place-items-center {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 15px;
+  place-items: center;
+}
+/*# sourceMappingURL=index.css.map */
