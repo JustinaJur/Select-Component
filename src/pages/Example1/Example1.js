@@ -22,7 +22,7 @@ const towns = [
 
 const Example1 = () => {
   return (
-    <div className="c-example1 u-place-items-center container">
+    <div className="u-place-items-center container">
       <h2>Select a town</h2>
       <p>
         <span>Only</span> one option is possible
