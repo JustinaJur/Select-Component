@@ -1,16 +1,17 @@
 import React, { Fragment } from "react";
 import FontAwesome from "react-fontawesome";
 
-import List from "./List";
+import "./Select.css";
+import List from "../List/List";
 
 class Select extends React.Component {
   state = {
     searchValues: [],
-    isMenuVisible: false,
-    searchValue: ""
+    searchValue: "",
+    isMenuVisible: false
   };
 
-  addUniqueSearchValue = event => {
+  addSearchValue = event => {
     const { searchValues } = this.state;
     const { isMultipleSelection } = this.props;
 
@@ -27,35 +28,6 @@ class Select extends React.Component {
         searchValue: ""
       });
     }
-
-    // else if (!searchedData.includes(event)) {
-    //   console.log(event.target.value);
-    //   this.setState({
-    //     searchedData: [...searchedData, event.target.value],
-    //     // isMenuVisible: false,
-    //     searchValue: ""
-    //   });
-    // }
-  };
-
-  selectValueFromMenu = value => {
-    const { searchValues } = this.state;
-    const { isMultipleSelection } = this.props;
-
-    if (!isMultipleSelection && searchValues.length > 0) {
-      return;
-    } else if (!searchValues.includes(value)) {
-      this.setState({
-        searchValues: [...searchValues, value],
-        isMenuVisible: false,
-        searchValue: ""
-      });
-    } else {
-      this.setState({
-        isMenuVisible: false,
-        searchValue: ""
-      });
-    }
   };
 
   removeSearchValue = index => {
@@ -66,14 +38,32 @@ class Select extends React.Component {
     });
   };
 
-  handleSearchValue = event => {
+  selectValueFromMenu = value => {
+    const { searchValues } = this.state;
+    const { isMultipleSelection } = this.props;
+
     this.setState({
-      searchValue: event.target.value
+      isMenuVisible: false,
+      searchValue: ""
     });
 
-    this.setState({ isMenuVisible: true }, () => {
-      document.addEventListener("click", this.closeMenu);
-    });
+    if (!isMultipleSelection && searchValues.length > 0) {
+      return;
+    } else if (!searchValues.includes(value)) {
+      this.setState({
+        searchValues: [...searchValues, value]
+      });
+    }
+  };
+
+  handleSearchValue = event => {
+    this.setState(
+      {
+        searchValue: event.target.value,
+        isMenuVisible: true
+      },
+      () => document.addEventListener("click", this.closeMenu)
+    );
   };
 
   closeMenu = event => {
@@ -82,6 +72,35 @@ class Select extends React.Component {
         document.removeEventListener("click", this.closeMenu);
       });
     }
+  };
+
+  renderTags = () => {
+    const { searchValues, searchValue } = this.state;
+    const { placeholder } = this.props;
+
+    return (
+      <div className="c-select__body">
+        <div className="c-select__tags">
+          {searchValues.map((value, index) => (
+            <div key={index}>
+              <FontAwesome
+                onClick={() => this.removeSearchValue(value)}
+                name="times-circle"
+                size="2x"
+              />
+              <span>{value}</span>
+            </div>
+          ))}
+        </div>
+        <input
+          type="text"
+          placeholder={placeholder || "Search.."}
+          value={searchValue}
+          onKeyUp={event => this.addSearchValue(event)}
+          onChange={this.handleSearchValue}
+        />
+      </div>
+    );
   };
 
   renderMenu = () => {
@@ -105,43 +124,13 @@ class Select extends React.Component {
     );
   };
 
-  renderTags = () => {
-    const { searchValues, searchValue } = this.state;
-    const { placeholder } = this.props;
-
-    return (
-      <div className="c-select__body">
-        <div className="c-select__tags">
-          {searchValues.map((value, index) => (
-            <div key={index}>
-              <FontAwesome
-                onClick={() => this.removeSearchValue(value)}
-                name="times-circle"
-                size="1x"
-                style={{ color: "black" }}
-              />
-              <span>{value}</span>
-            </div>
-          ))}
-        </div>
-        <input
-          type="text"
-          placeholder={(placeholder && placeholder) || "Search.."}
-          value={searchValue}
-          onKeyUp={event => this.addUniqueSearchValue(event)}
-          onChange={this.handleSearchValue}
-        />
-      </div>
-    );
-  };
-
   render() {
     const { isMenuVisible, searchValues } = this.state;
 
     return (
       <Fragment>
         <div
-          classNAme="c-select"
+          className="c-select"
           ref={element => {
             this.menu = element;
           }}
@@ -149,7 +138,6 @@ class Select extends React.Component {
           {this.renderTags()}
           {isMenuVisible ? this.renderMenu() : null}
         </div>
-
         <List array={searchValues} />
       </Fragment>
     );

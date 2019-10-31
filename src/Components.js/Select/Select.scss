@@ -1,0 +1,53 @@
+.c-select {
+  &__body {
+    display: grid;
+    min-height: 48px;
+    width: 480px;
+    padding: 0 8px;
+    border: 1px solid rgb(214, 216, 218);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  &:focus-within {
+    /// border: 1px solid #88c5ee;
+    border-radius: 3px;
+  }
+  &__menu {
+    min-height: 40px;
+    max-height: 200px;
+    border-radius: 3px;
+    border: 1px solid #88c5ee;
+    overflow-y: scroll;
+    p {
+      margin: 0px;
+      padding: 6px;
+    }
+    p:hover {
+      background-color: #eee9e9;
+    }
+  }
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    div {
+      background-color: #cd9b9b;
+      border-radius: 5px;
+      margin: 2px;
+      padding: 4px;
+    }
+    span {
+      padding: 1px 1px 1px 4px;
+      font-size: 14px;
+    }
+  }
+  input {
+    border: none;
+    height: 30px;
+    font-size: 14px;
+    padding: 4px 0 0 0;
+  }
+
+  input:focus {
+    outline: transparent;
+  }
+}

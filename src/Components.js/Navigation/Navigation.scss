@@ -1,0 +1,20 @@
+.c-navigation {
+  display: flex;
+  justify-content: space-around;
+  button {
+    background-color: #d9f614;
+    border: 2px solid black;
+    border-radius: 50%;
+    height: 40px;
+    cursor: pointer;
+    a {
+      color: brown;
+      margin: 8px;
+      padding: 8px;
+      font-size: 20px;
+    }
+    a:focus {
+      color: red;
+    }
+  }
+}

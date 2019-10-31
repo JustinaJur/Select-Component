@@ -1,0 +1,27 @@
+.c-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.c-navigation button {
+  background-color: #d9f614;
+  border: 2px solid black;
+  border-radius: 50%;
+  height: 40px;
+  cursor: pointer;
+}
+
+.c-navigation button a {
+  color: brown;
+  margin: 8px;
+  padding: 8px;
+  font-size: 20px;
+}
+
+.c-navigation button a:focus {
+  color: red;
+}
+/*# sourceMappingURL=Navigation.css.map */
